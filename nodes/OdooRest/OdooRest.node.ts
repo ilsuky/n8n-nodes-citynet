@@ -64,8 +64,12 @@ export class OdooRest implements INodeType {
 						value: 'sale.product.dynamic.info',
 					},
 					{
-						name: 'Phone Number',
-						value: 'phone.number.info',
+						name: 'Sale Order Line Dynamic Info',
+						value: 'sale.product.dynamic.info',
+					},					
+					{
+						name: 'Helpdesk',
+						value: 'helpdesk.ticket',
 					},	
 					{
 						name: 'Domains',
