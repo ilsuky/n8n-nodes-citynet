@@ -236,7 +236,7 @@ class SipWise {
                     let requestBody = {};
                     if (body.length > 0) {
                         try {
-                            requestBody = JSON.parse(JSON.stringify(body));
+                            requestBody = JSON.parse(body);
                         }
                         catch (error) {
                             throw new n8n_workflow_1.NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
@@ -278,7 +278,7 @@ class SipWise {
                         json: {},
                         binary: {},
                     };
-                    newItem.json = await GenericFunctions_1.sipWiseApiRequest.call(this, 'Post', endpoint, requestBody, {});
+                    newItem.json = JSON.parse(JSON.stringify(await GenericFunctions_1.sipWiseApiRequest.call(this, 'Post', endpoint, requestBody, {})));
                     returnItems.push(newItem);
                 }
             }
