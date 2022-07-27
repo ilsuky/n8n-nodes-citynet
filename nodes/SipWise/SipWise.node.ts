@@ -258,7 +258,7 @@ export class SipWise implements INodeType {
 					let requestBody:IDataObject = {};
 					if(body.length >0){
 						try {
-							requestBody = JSON.parse(body);
+							requestBody = JSON.parse(JSON.stringify(body));
 						} catch (error) {
 							throw new NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
 						}
@@ -299,13 +299,14 @@ export class SipWise implements INodeType {
 					let requestBody:IDataObject = {};
 					if(body.length >0){
 						try {
-							requestBody = JSON.parse(body);
+							requestBody = JSON.parse(JSON.stringify(body));
 						} catch (error) {
 							throw new NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
 						}
 					}
 
 					item = items[itemIndex];
+					
 					const newItem: INodeExecutionData = {
 						json: {},
 						binary: {},

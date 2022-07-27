@@ -236,7 +236,7 @@ class SipWise {
                     let requestBody = {};
                     if (body.length > 0) {
                         try {
-                            requestBody = JSON.parse(body);
+                            requestBody = JSON.parse(JSON.stringify(body));
                         }
                         catch (error) {
                             throw new n8n_workflow_1.NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
@@ -267,7 +267,7 @@ class SipWise {
                     let requestBody = {};
                     if (body.length > 0) {
                         try {
-                            requestBody = JSON.parse(body);
+                            requestBody = JSON.parse(JSON.stringify(body));
                         }
                         catch (error) {
                             throw new n8n_workflow_1.NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
