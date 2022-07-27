@@ -62,12 +62,12 @@ class OdooRest {
                             value: 'sale.product.dynamic.info',
                         },
                         {
-                            name: 'Sale Order Line Dynamic Info',
-                            value: 'sale.product.dynamic.info',
-                        },
-                        {
                             name: 'Helpdesk',
                             value: 'helpdesk.ticket',
+                        },
+                        {
+                            name: 'Phone Number',
+                            value: 'phone.number.info',
                         },
                         {
                             name: 'Domains',
