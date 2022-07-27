@@ -256,14 +256,16 @@ export class SipWise implements INodeType {
 					const endpoint = `${resource}/${id}`;
 					const body = this.getNodeParameter('body', itemIndex, '') as string;
 					let requestBody:IDataObject = {};
-					if(body.length >0){
-						try {
-							requestBody = JSON.parse(body);
-						} catch (error) {
-							throw new NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
-						}
-					}
-
+					
+					//if(body.length >0){
+					//	try {
+					//		requestBody = JSON.parse(body);
+					//	} catch (error) {
+					//		throw new NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
+					//	}
+					//}
+					
+					requestBody = JSON.parse(body);
 					item = items[itemIndex];
 					const newItem: INodeExecutionData = {
 						json: {},

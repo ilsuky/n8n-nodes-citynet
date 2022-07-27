@@ -234,14 +234,7 @@ class SipWise {
                     const endpoint = `${resource}/${id}`;
                     const body = this.getNodeParameter('body', itemIndex, '');
                     let requestBody = {};
-                    if (body.length > 0) {
-                        try {
-                            requestBody = JSON.parse(body);
-                        }
-                        catch (error) {
-                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), 'Request body is not valid JSON.');
-                        }
-                    }
+                    requestBody = JSON.parse(body);
                     item = items[itemIndex];
                     const newItem = {
                         json: {},
