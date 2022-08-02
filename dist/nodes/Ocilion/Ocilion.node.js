@@ -39,6 +39,39 @@ class Ocilion {
                     description: 'Resource to use',
                 },
                 {
+                    displayName: 'Sub-Resource',
+                    name: 'subresource',
+                    type: 'options',
+                    options: [
+                        {
+                            name: 'None',
+                            value: 'none',
+                        },
+                        {
+                            name: 'Profiles',
+                            value: 'profiles',
+                        },
+                        {
+                            name: 'Devices',
+                            value: 'devices',
+                        },
+                        {
+                            name: 'Subscriptons',
+                            value: 'subscriptons',
+                        },
+                        {
+                            name: 'Subscriptons Change',
+                            value: 'subscriptonchange',
+                        },
+                        {
+                            name: 'Billing',
+                            value: 'billing',
+                        },
+                    ],
+                    default: 'none',
+                    description: 'Sub-Resource to use',
+                },
+                {
                     displayName: 'Operation',
                     name: 'operation',
                     type: 'options',
@@ -77,6 +110,21 @@ class Ocilion {
                 {
                     displayName: 'Id',
                     name: 'id',
+                    type: 'string',
+                    displayOptions: {
+                        show: {
+                            operation: [
+                                'get',
+                                'update',
+                            ],
+                        },
+                    },
+                    default: '',
+                    description: 'Id of resource',
+                },
+                {
+                    displayName: 'SUB-Id',
+                    name: 'subid',
                     type: 'string',
                     displayOptions: {
                         show: {
@@ -139,6 +187,7 @@ class Ocilion {
         const items = this.getInputData();
         const returnItems = [];
         const resource = this.getNodeParameter('resource', 0, '');
+        const subresource = this.getNodeParameter('subresource', 0, '');
         const operation = this.getNodeParameter('operation', 0, '');
         let item;
         const credentials = await this.getCredentials('ocilion');
@@ -148,7 +197,19 @@ class Ocilion {
                 if (operation == 'get') {
                     const worldId = this.getNodeParameter('worldId', itemIndex, '');
                     const id = this.getNodeParameter('id', itemIndex, '');
-                    const endpoint = `${worldId}/${resource}/${id}`;
+                    let endpoint;
+                    if (subresource != 'none') {
+                        let endpoint = `${worldId}/${resource}/${id}`;
+                    }
+                    else {
+                        const subid = this.getNodeParameter('subid', itemIndex, '');
+                        if (subid.length > 0) {
+                            let endpoint = `${worldId}/${resource}/${id}/${subresource}/${subid}`;
+                        }
+                        else {
+                            let endpoint = `${worldId}/${resource}/${id}/${subresource}`;
+                        }
+                    }
                     item = items[itemIndex];
                     const newItem = {
                         json: {},

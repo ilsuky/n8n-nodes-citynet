@@ -43,6 +43,39 @@ export class Ocilion implements INodeType {
 				description: 'Resource to use',
 			},
 			{
+				displayName: 'Sub-Resource',
+				name: 'subresource',
+				type: 'options',
+				options: [
+					{
+						name: 'None',
+						value: 'none',
+					},				
+					{
+						name: 'Profiles',
+						value: 'profiles',
+					},
+					{
+						name: 'Devices',
+						value: 'devices',
+					},
+					{
+						name: 'Subscriptons',
+						value: 'subscriptons',
+					},
+					{
+						name: 'Subscriptons Change',
+						value: 'subscriptonchange',
+					},
+					{
+						name: 'Billing',
+						value: 'billing',
+					},
+				],
+				default: 'none',
+				description: 'Sub-Resource to use',
+			},			
+			{
 				displayName: 'Operation',
 				name: 'operation',
 				type: 'options',
@@ -94,6 +127,21 @@ export class Ocilion implements INodeType {
 				description: 'Id of resource',
 			},
 			{
+				displayName: 'SUB-Id',
+				name: 'subid',
+				type: 'string',
+				displayOptions: {
+					show: {
+						operation:[
+							'get',
+							'update',
+						],
+					},
+				},
+				default: '',
+				description: 'Id of resource',
+			},			
+			{
 				displayName: 'Filter',
 				name: 'filter',
 				type: 'string',
@@ -144,6 +192,7 @@ export class Ocilion implements INodeType {
 		const returnItems: INodeExecutionData[] = [];
 		
 		const resource = this.getNodeParameter('resource', 0, '') as string;
+		const subresource = this.getNodeParameter('subresource', 0, '') as string;
 		const operation = this.getNodeParameter('operation', 0, '') as string;
 		let item: INodeExecutionData;
 		const credentials = await this.getCredentials('ocilion') as OcilionApiCredentials;
@@ -162,7 +211,17 @@ export class Ocilion implements INodeType {
 					
 					const worldId = this.getNodeParameter('worldId', itemIndex, '') as string;
 					const id = this.getNodeParameter('id', itemIndex, '') as string;
-					const endpoint = `${worldId}/${resource}/${id}`;
+					let endpoint: any;
+					if(subresource != 'none'){
+						let endpoint = `${worldId}/${resource}/${id}`;
+					} else {
+						const subid = this.getNodeParameter('subid', itemIndex, '') as string;
+						if(subid.length > 0){
+							let endpoint = `${worldId}/${resource}/${id}/${subresource}/${subid}`;
+						} else {
+							let endpoint = `${worldId}/${resource}/${id}/${subresource}`;
+						}
+					}
 					item = items[itemIndex];
 					const newItem: INodeExecutionData = {
 						json: {},
