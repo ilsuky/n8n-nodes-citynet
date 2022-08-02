@@ -115,6 +115,7 @@ class Ocilion {
                         show: {
                             operation: [
                                 'get',
+                                'create',
                                 'update',
                             ],
                         },
@@ -130,6 +131,7 @@ class Ocilion {
                         show: {
                             operation: [
                                 'get',
+                                'create',
                                 'update',
                             ],
                         },
@@ -197,19 +199,7 @@ class Ocilion {
                 if (operation == 'get') {
                     const worldId = this.getNodeParameter('worldId', itemIndex, '');
                     const id = this.getNodeParameter('id', itemIndex, '');
-                    let endpoint;
-                    if (subresource != 'none') {
-                        let endpoint = `${worldId}/${resource}/${id}`;
-                    }
-                    else {
-                        const subid = this.getNodeParameter('subid', itemIndex, '');
-                        if (subid.length > 0) {
-                            let endpoint = `${worldId}/${resource}/${id}/${subresource}/${subid}`;
-                        }
-                        else {
-                            let endpoint = `${worldId}/${resource}/${id}/${subresource}`;
-                        }
-                    }
+                    const endpoint = `${worldId}/${resource}/${id}`;
                     item = items[itemIndex];
                     const newItem = {
                         json: {},

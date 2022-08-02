@@ -119,6 +119,7 @@ export class Ocilion implements INodeType {
 					show: {
 						operation:[
 							'get',
+							'create',
 							'update',
 						],
 					},
@@ -134,6 +135,7 @@ export class Ocilion implements INodeType {
 					show: {
 						operation:[
 							'get',
+							'create',
 							'update',
 						],
 					},
@@ -194,12 +196,11 @@ export class Ocilion implements INodeType {
 		const resource = this.getNodeParameter('resource', 0, '') as string;
 		const subresource = this.getNodeParameter('subresource', 0, '') as string;
 		const operation = this.getNodeParameter('operation', 0, '') as string;
+		
 		let item: INodeExecutionData;
 		const credentials = await this.getCredentials('ocilion') as OcilionApiCredentials;
 		const cookie = await getCookie.call(this,credentials);
-		// Itterates over all input items and add the key "myString" with the
-		// value the parameter "myString" resolves to.
-		// (This could be a different value for each item in case it contains an expression)
+
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 
 			try{
@@ -208,20 +209,10 @@ export class Ocilion implements INodeType {
 				// 						Get
 				//--------------------------------------------------------
 				if(operation == 'get'){
-					
+
 					const worldId = this.getNodeParameter('worldId', itemIndex, '') as string;
 					const id = this.getNodeParameter('id', itemIndex, '') as string;
-					let endpoint: any;
-					if(subresource != 'none'){
-						let endpoint = `${worldId}/${resource}/${id}`;
-					} else {
-						const subid = this.getNodeParameter('subid', itemIndex, '') as string;
-						if(subid.length > 0){
-							let endpoint = `${worldId}/${resource}/${id}/${subresource}/${subid}`;
-						} else {
-							let endpoint = `${worldId}/${resource}/${id}/${subresource}`;
-						}
-					}
+					const endpoint = `${worldId}/${resource}/${id}`;
 					item = items[itemIndex];
 					const newItem: INodeExecutionData = {
 						json: {},
