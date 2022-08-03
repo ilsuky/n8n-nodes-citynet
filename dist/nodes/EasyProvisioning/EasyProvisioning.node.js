@@ -70,6 +70,10 @@ class EasyProvisioning {
                             value: 'wifi_configurations',
                         },
                         {
+                            name: 'Bridged Vlans',
+                            value: 'bridged_vlans',
+                        },
+                        {
                             name: 'CreateLog',
                             value: 'customer_histories',
                         },
@@ -94,6 +98,7 @@ class EasyProvisioning {
                                 'voice_services',
                                 'tv_services',
                                 'wifi_configurations',
+                                'bridged_vlans',
                                 'customer_histories',
                             ],
                         },

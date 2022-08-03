@@ -74,6 +74,10 @@ export class EasyProvisioning implements INodeType {
 						value: 'wifi_configurations',
 					},
 					{
+						name: 'Bridged Vlans',
+						value: 'bridged_vlans',
+					},					
+					{
 						name: 'CreateLog',
 						value: 'customer_histories',
 					},
@@ -98,6 +102,7 @@ export class EasyProvisioning implements INodeType {
 							'voice_services',
 							'tv_services',
 							'wifi_configurations',
+							'bridged_vlans',
 							'customer_histories',
 						],
 					},

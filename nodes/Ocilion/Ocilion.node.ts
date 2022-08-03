@@ -38,6 +38,10 @@ export class Ocilion implements INodeType {
 						name: 'Customers',
 						value: 'customers',
 					},
+					{
+						name: 'Devices',
+						value: 'devices',
+					},					
 				],
 				default: 'customers',
 				description: 'Resource to use',
@@ -108,7 +112,7 @@ export class Ocilion implements INodeType {
 				displayName: 'WorldId',
 				name: 'worldId',
 				type: 'string',
-				default: '',
+				default: '280bf646-c09a-4d67-a0d5-21ecf0f2e114',
 				description: 'World Id of resource',
 			},
 			{
@@ -289,7 +293,13 @@ export class Ocilion implements INodeType {
 				//--------------------------------------------------------
 				if(operation == 'create'){
 					const worldId = this.getNodeParameter('worldId', itemIndex, '') as string;
-					const endpoint = `${worldId}/${resource}`;
+					const id = this.getNodeParameter('id', itemIndex, '') as string;
+					var endpoint;
+					if ( id ) {
+						endpoint = `${worldId}/${resource}/${id}`;
+					} else {
+						endpoint = `${worldId}/${resource}`;
+					}
 					const body = this.getNodeParameter('body', itemIndex, '') as string;
 					let requestBody:IDataObject = {};
 					if(body.length >0){

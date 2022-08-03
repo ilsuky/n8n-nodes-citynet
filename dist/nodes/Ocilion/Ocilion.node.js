@@ -34,6 +34,10 @@ class Ocilion {
                             name: 'Customers',
                             value: 'customers',
                         },
+                        {
+                            name: 'Devices',
+                            value: 'devices',
+                        },
                     ],
                     default: 'customers',
                     description: 'Resource to use',
@@ -104,7 +108,7 @@ class Ocilion {
                     displayName: 'WorldId',
                     name: 'worldId',
                     type: 'string',
-                    default: '',
+                    default: '280bf646-c09a-4d67-a0d5-21ecf0f2e114',
                     description: 'World Id of resource',
                 },
                 {
@@ -263,7 +267,14 @@ class Ocilion {
                 }
                 if (operation == 'create') {
                     const worldId = this.getNodeParameter('worldId', itemIndex, '');
-                    const endpoint = `${worldId}/${resource}`;
+                    const id = this.getNodeParameter('id', itemIndex, '');
+                    var endpoint;
+                    if (id) {
+                        endpoint = `${worldId}/${resource}/${id}`;
+                    }
+                    else {
+                        endpoint = `${worldId}/${resource}`;
+                    }
                     const body = this.getNodeParameter('body', itemIndex, '');
                     let requestBody = {};
                     if (body.length > 0) {
