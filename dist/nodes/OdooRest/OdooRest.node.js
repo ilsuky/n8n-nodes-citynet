@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OdooRest = void 0;
+const n8n_workflow_1 = require("n8n-workflow");
 const GenericFunctions_1 = require("./GenericFunctions");
 class OdooRest {
     constructor() {
@@ -333,16 +334,21 @@ class OdooRest {
                 if (operation == 'create') {
                     const body = this.getNodeParameter('body', itemIndex, '');
                     const endpoint = resource + '/create';
-                    let jsonBody = {};
-                    if (body && body.length > 0) {
-                        jsonBody = JSON.parse(body);
+                    let requestBody = {};
+                    if (body.length > 0) {
+                        try {
+                            requestBody = JSON.parse(body);
+                        }
+                        catch (error) {
+                            throw new n8n_workflow_1.NodeOperationError(this.getNode(), 'Request body is not valid JSON: ' + body);
+                        }
                     }
                     item = items[itemIndex];
                     const newItem = {
                         json: {},
                         binary: {},
                     };
-                    newItem.json = JSON.parse(JSON.stringify(await GenericFunctions_1.odooRestApiRequest.call(this, 'Post', endpoint, jsonBody, {})));
+                    newItem.json = JSON.parse(JSON.stringify(await GenericFunctions_1.odooRestApiRequest.call(this, 'Post', endpoint, requestBody, {})));
                     returnItems.push(newItem);
                 }
                 if (operation == 'execute') {

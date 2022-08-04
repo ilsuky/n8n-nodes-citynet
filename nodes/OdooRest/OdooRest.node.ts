@@ -1,5 +1,5 @@
 import { IExecuteFunctions } from 'n8n-core';
-import { IDataObject,ILoadOptionsFunctions, INodeExecutionData, INodeType, INodeTypeDescription } from 'n8n-workflow';
+import { IDataObject, ILoadOptionsFunctions, INodeExecutionData, INodeType, INodeTypeDescription, NodeOperationError } from 'n8n-workflow';
 
 import {
 	odooRestApiRequest,
@@ -369,17 +369,22 @@ export class OdooRest implements INodeType {
 				if(operation == 'create'){
 					const body = this.getNodeParameter('body', itemIndex, '') as string;
 					const endpoint = resource + '/create';
-					let jsonBody = {};
-					if(body && body.length>0){
-						jsonBody = JSON.parse(body);
+					
+					let requestBody:IDataObject = {};
+					if(body.length >0){
+						try {
+							requestBody = JSON.parse(body);
+						} catch (error) {
+							throw new NodeOperationError(this.getNode(), 'Request body is not valid JSON: ' + body );
+						}
 					}
-
+					
 					item = items[itemIndex];
 					const newItem: INodeExecutionData = {
 						json: {},
 						binary: {},
 					};
-					newItem.json = JSON.parse(JSON.stringify(await odooRestApiRequest.call(this,'Post', endpoint, jsonBody, {})));
+					newItem.json = JSON.parse(JSON.stringify(await odooRestApiRequest.call(this,'Post', endpoint, requestBody, {})));
 					
 					returnItems.push(newItem);
 				}
