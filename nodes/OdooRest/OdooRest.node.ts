@@ -404,7 +404,7 @@ export class OdooRest implements INodeType {
 						json: {},
 						binary: {},
 					};
-					newItem.json = JSON.parse(await odooRestApiRequest.call(this,'Post', endpoint, jsonBody, {}));
+					newItem.json = JSON.parse(JSON.stringify(await odooRestApiRequest.call(this,'Post', endpoint, jsonBody, {})));
 					
 					returnItems.push(newItem);
 				}

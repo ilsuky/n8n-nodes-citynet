@@ -363,7 +363,7 @@ class OdooRest {
                         json: {},
                         binary: {},
                     };
-                    newItem.json = JSON.parse(await GenericFunctions_1.odooRestApiRequest.call(this, 'Post', endpoint, jsonBody, {}));
+                    newItem.json = JSON.parse(JSON.stringify(await GenericFunctions_1.odooRestApiRequest.call(this, 'Post', endpoint, jsonBody, {})));
                     returnItems.push(newItem);
                 }
                 if (operation == 'schema') {
