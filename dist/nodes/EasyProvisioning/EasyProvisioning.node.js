@@ -54,6 +54,10 @@ class EasyProvisioning {
                             value: 'devices',
                         },
                         {
+                            name: 'Devices Base Config',
+                            value: 'device_base_configurations',
+                        },
+                        {
                             name: 'Voice lines',
                             value: 'voice_lines',
                         },
@@ -98,6 +102,7 @@ class EasyProvisioning {
                                 'internet_services',
                                 'credentials',
                                 'devices',
+                                'device_base_configurations',
                                 'voice_lines',
                                 'voice_services',
                                 'tv_services',

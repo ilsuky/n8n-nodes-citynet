@@ -56,6 +56,10 @@ export class EasyProvisioning implements INodeType {
 					{
 						name: 'Devices',
 						value: 'devices',
+					},
+					{
+						name: 'Devices Base Config',
+						value: 'device_base_configurations',
 					},					
 					{
 						name: 'Voice lines',
@@ -102,6 +106,7 @@ export class EasyProvisioning implements INodeType {
 							'internet_services',
 							'credentials',
 							'devices',
+							'device_base_configurations',
 							'voice_lines',
 							'voice_services',
 							'tv_services',
