@@ -148,6 +148,11 @@ export class EasyProvisioning implements INodeType {
 						value: 'delete',
 						description: 'Delete a record',
 					},
+					{
+						name: 'Factory Eeset',
+						value: 'factory_reset',
+						description: 'Reset a device to factory',
+					},					
 				],
 				default: 'get',
 				description: 'Operation to perform',
@@ -162,6 +167,7 @@ export class EasyProvisioning implements INodeType {
 							'get',
 							'delete',
 							'update',
+							'factory_reset',
 						],
 					},
 				},
@@ -333,6 +339,30 @@ export class EasyProvisioning implements INodeType {
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 
 			try{
+				
+				//--------------------------------------------------------
+				// 						Factory Reset
+				//--------------------------------------------------------
+				if(operation == 'factory_reset'){
+					const id = this.getNodeParameter('id', itemIndex, '') as string;
+					
+					const endpoint = `${resource}/${id}/factory_reset`;
+					
+					item = items[itemIndex];
+
+					const data = await easyProvisioningApiRequest.call(this,'Post', endpoint, {}, {},token);
+					const datajson = data.data;
+					const newItem: INodeExecutionData = {
+						json: {},
+						binary: {},
+					};
+					newItem.json = datajson;
+
+					returnItems.push(newItem);
+						
+				}				
+				
+				
 				//--------------------------------------------------------
 				// 						Get
 				//--------------------------------------------------------

@@ -144,6 +144,11 @@ class EasyProvisioning {
                             value: 'delete',
                             description: 'Delete a record',
                         },
+                        {
+                            name: 'Factory Eeset',
+                            value: 'factory_reset',
+                            description: 'Reset a device to factory',
+                        },
                     ],
                     default: 'get',
                     description: 'Operation to perform',
@@ -158,6 +163,7 @@ class EasyProvisioning {
                                 'get',
                                 'delete',
                                 'update',
+                                'factory_reset',
                             ],
                         },
                     },
@@ -323,6 +329,19 @@ class EasyProvisioning {
         const token = await GenericFunctions_1.getJwtToken.call(this, credentials);
         for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
             try {
+                if (operation == 'factory_reset') {
+                    const id = this.getNodeParameter('id', itemIndex, '');
+                    const endpoint = `${resource}/${id}/factory_reset`;
+                    item = items[itemIndex];
+                    const data = await GenericFunctions_1.easyProvisioningApiRequest.call(this, 'Post', endpoint, {}, {}, token);
+                    const datajson = data.data;
+                    const newItem = {
+                        json: {},
+                        binary: {},
+                    };
+                    newItem.json = datajson;
+                    returnItems.push(newItem);
+                }
                 if (operation == 'get') {
                     const id = this.getNodeParameter('id', itemIndex, '');
                     const endpoint = `${resource}/${id}`;
