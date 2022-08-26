@@ -149,7 +149,7 @@ export class EasyProvisioning implements INodeType {
 						description: 'Delete a record',
 					},
 					{
-						name: 'Factory Eeset',
+						name: 'Factory Reset',
 						value: 'factoryReset',
 						description: 'Reset a device to factory',
 					},					
