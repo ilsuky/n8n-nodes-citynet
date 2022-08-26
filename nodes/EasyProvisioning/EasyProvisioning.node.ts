@@ -150,7 +150,7 @@ export class EasyProvisioning implements INodeType {
 					},
 					{
 						name: 'Factory Eeset',
-						value: 'factory_reset',
+						value: 'factoryReset',
 						description: 'Reset a device to factory',
 					},					
 				],
@@ -167,7 +167,7 @@ export class EasyProvisioning implements INodeType {
 							'get',
 							'delete',
 							'update',
-							'factory_reset',
+							'factoryReset',
 						],
 					},
 				},
@@ -343,10 +343,10 @@ export class EasyProvisioning implements INodeType {
 				//--------------------------------------------------------
 				// 						Factory Reset
 				//--------------------------------------------------------
-				if(operation == 'factory_reset'){
+				if(operation == 'factoryReset'){
 					const id = this.getNodeParameter('id', itemIndex, '') as string;
 					
-					const endpoint = `${resource}/${id}/factory_reset`;
+					const endpoint = `devices/${id}/factory_reset`;
 					
 					item = items[itemIndex];
 
