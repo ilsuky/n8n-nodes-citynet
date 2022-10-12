@@ -95,6 +95,22 @@ class OdooRest {
                             value: 'slapin.dynamic.info',
                         },
                         {
+                            name: 'Bank Statement',
+                            value: 'account.bank.statement',
+                        },
+                        {
+                            name: 'Bank Statement Lines',
+                            value: 'account.bank.statement.line',
+                        },
+                        {
+                            name: 'StadwerkBilling',
+                            value: 'stadwerk.billing',
+                        },
+                        {
+                            name: 'StadwerkBillingLine',
+                            value: 'stadwerk.billing.line',
+                        },
+                        {
                             name: 'LogNote',
                             value: 'mail.message',
                         },
