@@ -110,7 +110,15 @@ export class OdooRest implements INodeType {
 					{
 						name: 'StadwerkBillingLine',
 						value: 'stadwerk.billing.line',
-					},						
+					},		
+					{
+						name: 'Employee',
+						value: 'hr.employee',
+					},		
+					{
+						name: 'Attendance',
+						value: 'hr.attendance',
+					},							
 					{
 						name: 'LogNote',
 						value: 'mail.message',

@@ -111,6 +111,14 @@ class OdooRest {
                             value: 'stadwerk.billing.line',
                         },
                         {
+                            name: 'Employee',
+                            value: 'hr.employee',
+                        },
+                        {
+                            name: 'Attendance',
+                            value: 'hr.attendance',
+                        },
+                        {
                             name: 'LogNote',
                             value: 'mail.message',
                         },
