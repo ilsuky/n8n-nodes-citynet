@@ -119,6 +119,14 @@ class OdooRest {
                             value: 'domain.nameserver',
                         },
                         {
+                            name: 'Webserver Subscriptions',
+                            value: 'webserver.subscriptions',
+                        },
+                        {
+                            name: 'Webserver Config',
+                            value: 'webserver.config',
+                        },
+                        {
                             name: 'StadwerkBilling',
                             value: 'stadwerk.billing',
                         },
