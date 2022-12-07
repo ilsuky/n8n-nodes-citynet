@@ -103,6 +103,22 @@ class OdooRest {
                             value: 'account.bank.statement.line',
                         },
                         {
+                            name: 'Domain Handle',
+                            value: 'domain.contact.handle',
+                        },
+                        {
+                            name: 'Domain Documentation',
+                            value: 'domain.domain.registry',
+                        },
+                        {
+                            name: 'Domain Registrars',
+                            value: 'domain.registrar',
+                        },
+                        {
+                            name: 'Domain Nameserver',
+                            value: 'domain.nameserver',
+                        },
+                        {
                             name: 'StadwerkBilling',
                             value: 'stadwerk.billing',
                         },
