@@ -34,7 +34,7 @@ export async function easyProvisioningApiRequest(
 		method,
 		body,
 		qs,
-		uri: `${credentials.host}/api/v1/${endpoint}`,
+		uri: `${credentials.host}/chris/api/v1/${endpoint}`,
 		json: true,
 		gzip: true,
 		rejectUnauthorized: false,
@@ -65,7 +65,7 @@ export async function easyProvisioningApiRequest(
 	const options: OptionsWithUri = {
 		method: 'POST',
 		body: `{ "user": {"email": "${username}", "password": "${password}"} }`,
-		uri: `${host}/user_service/api/v1/login`,
+		uri: `${host}/chris_service/api/v1/login`,
 		json: true,
 		rejectUnauthorized: false,
 	};
