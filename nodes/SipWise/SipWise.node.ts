@@ -203,7 +203,7 @@ export class SipWise implements INodeType {
 
 					const split = this.getNodeParameter('split', itemIndex, '') as boolean;
 					const limit = this.getNodeParameter('limit', itemIndex, '') as number;
-					const endpoint = resource;
+					const endpoint = `${resource}/`;
 
 					const filterInput = this.getNodeParameter('filters.filter', itemIndex, []) as INodeParameters[];
 					item = items[itemIndex];
