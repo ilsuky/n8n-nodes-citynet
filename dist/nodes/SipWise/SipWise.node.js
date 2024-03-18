@@ -192,7 +192,7 @@ class SipWise {
                 if (operation == 'getAll') {
                     const split = this.getNodeParameter('split', itemIndex, '');
                     const limit = this.getNodeParameter('limit', itemIndex, '');
-                    const endpoint = resource;
+                    const endpoint = `${resource}/`;
                     const filterInput = this.getNodeParameter('filters.filter', itemIndex, []);
                     item = items[itemIndex];
                     const qs = {};
